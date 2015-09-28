@@ -1,0 +1,54 @@
+SNEHA SARAN
+snehasar@ccs.neu.edu
+
+To execute the program, type the following command on command line:
+1. Copy the folder to your current working directory
+2. From the command prompt, navigate to the directory containing this folder,
+say /home/USER/Desktop/Folder , by typing the following command ::
+cd /home/USER/Desktop/Folder 
+3. On the command line, execute the following command:
+python3 Indexer.py <InputFile> <OutputFile>
+
+where 
+The name of the file to be executed is Indexer.py
+<InputFile> is the name of the file containing the entire word corpus , in this
+case it is , tccorpus.txt
+<OutputFile> is the name of the file containing the inverted index.
+
+4.
+At this point, we have index_out.txt (<OutputFile> obtained from the above step)
+ containing the inverted indices.Now we need to run BM25 algorithm on the all the 
+documents in the corpus. For that execute the following command:
+python3 bm25.py <OutputFile> <Queries_File> <Max Doc Results> <BM25_OutputFile_ScoreList>
+
+where
+bm25.py is the name of the program.
+<OutputFile> : File created in Step3 , containing inverted indices.
+<Queries_File> : queries.txt (it is in the same folder as the program). Contains all
+		queries on which BM25 score is to be computed.
+<Max Doc Results> : Should be set to the maximum number of document results
+			expected in the final file. 
+<BM25_OutputFile_ScoreList> : This is the file containing BM25 scores of all the queries
+				given in <Queries_File>. Output will be written to this file.
+
+Nothing will be printed on console if the program executed without errors. <BM25_OutputFile_ScoreList> is the newly generated file.
+
+For every query, 
+query_id        Q0       doc_id      rank        BM25_score       system_name 
+is displayed.
+System name is : Sneha Saran
+
+5. result_eval.txt stores the final output of BM25 algorithm, which contains top 100 documents based on scores for every query.
+
+DESCRIPTION ABOUT IMPLEMENTATION:
+First, an inverted index is created for every word in the document - with the document 
+id in which it is present along with its term frequency. I have created a
+dictionary within a dictionary to store these values.Then I am writing them to a file called as index_out.txt. 
+
+Next step is to calculate BM25 score of every query that is given as input to the
+program. We check how many documents it occurs in, number of terms present in the query. If a query has repeated terms, BM Score for that term will be added to the previous score and this will result in a higher value of BM Score for that term as compared to others.
+Depending on these factors a BM score is calculated.
+
+
+
+
